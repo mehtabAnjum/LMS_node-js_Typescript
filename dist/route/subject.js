@@ -42,13 +42,13 @@ route.delete('/:id', (req, res) => {
             });
         }).catch(err => {
             res.status(400).json({
-                error: "could not delete subject",
+                error: "could not delete subject with id: " + id,
             });
         });
     }
     catch (err) {
         res.status(400).json({
-            error: "could not delete subject"
+            error: "could not delete subject with id: " + id
         });
     }
 });

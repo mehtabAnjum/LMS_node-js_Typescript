@@ -6,6 +6,7 @@ import {CourseService} from "./courseDao";
 export class SubjectService {
     public static async getAllSubjects(): Promise<SubjectInterface[] | null> {
         return await  models.Subject.findAll({
+            include: [{model: models.Course}],
             attributes: ['id', 'name']
         });
     }
@@ -35,8 +36,8 @@ export class SubjectService {
     public static async getTeachersBySubject(id: number): Promise<SubjectInterface | null> {
         return await models.Subject.findById(id, {
             attributes: [],
-            include:[{
-                model:models.Teacher
+            include: [{
+                model: models.Teacher
             }]
         })
     }

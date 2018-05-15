@@ -14,6 +14,7 @@ class SubjectService {
     static getAllSubjects() {
         return __awaiter(this, void 0, void 0, function* () {
             return yield model_1.models.Subject.findAll({
+                include: [{ model: model_1.models.Course }],
                 attributes: ['id', 'name']
             });
         });

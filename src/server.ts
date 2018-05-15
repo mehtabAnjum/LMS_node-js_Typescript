@@ -33,6 +33,11 @@ app.use('/students', studentRoute);
 app.use('/subjects', subjectRoute);
 app.use('/teachers', teacherRoute);
 
-app.listen(1234, () => {
-    console.log("Server started @ 1234");
+// app.listen(1234, () => {
+//     console.log("Server started @ 1234");
+// })
+
+app.listen(process.env.PORT/*5555*/, () => {
+    //db.sync();
+    console.log("started");
 })
