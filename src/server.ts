@@ -8,10 +8,7 @@ import cbRoute from "./route/course";
 import subjectRoute from "./route/subject";
 import teacherRoute from "./route/teacher";
 
-var cors = require('cors');
-
 const app = express();
-app.use(cors);
 app.use(express.json());
 app.use(express.urlencoded({
     extended: true
