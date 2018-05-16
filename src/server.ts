@@ -7,6 +7,7 @@ import studentRoute from "./route/student";
 import cbRoute from "./route/course";
 import subjectRoute from "./route/subject";
 import teacherRoute from "./route/teacher";
+import {db} from "./db/config";
 
 const app = express();
 app.use(express.json());
@@ -37,7 +38,7 @@ app.use('/teachers', teacherRoute);
 //     console.log("Server started @ 1234");
 // })
 
-app.listen(process.env.PORT/*5555*/, () => {
-    //db.sync();
+app.listen(process.env.PORT||5555, () => {
+    db.sync();
     console.log("started");
 })

@@ -4,6 +4,7 @@ import {BatchInterface, CourseInterface} from "../model/interfaces/interface";
 
 export class CourseService {
     public static async getCourses(): Promise<CourseInterface[] | null> {
+        console.log("course dao me aagaya")
         return await models.Course.findAll({
             include: [{
                 model: models.Batch,
@@ -13,6 +14,14 @@ export class CourseService {
                     model: models.Subject,
                     attributes: ['id', 'name'],
                 }]
+        })
+    }
+
+    public static async deleteCourse(id:number):Promise<number | null> {
+        return await models.Course.destroy({
+            where: {
+                id: id
+            }
         })
     }
 

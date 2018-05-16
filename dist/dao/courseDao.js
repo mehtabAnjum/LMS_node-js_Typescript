@@ -12,6 +12,7 @@ const model_1 = require("../model/model");
 class CourseService {
     static getCourses() {
         return __awaiter(this, void 0, void 0, function* () {
+            console.log("course dao me aagaya");
             return yield model_1.models.Course.findAll({
                 include: [{
                         model: model_1.models.Batch,
@@ -21,6 +22,15 @@ class CourseService {
                         model: model_1.models.Subject,
                         attributes: ['id', 'name'],
                     }]
+            });
+        });
+    }
+    static deleteCourse(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield model_1.models.Course.destroy({
+                where: {
+                    id: id
+                }
             });
         });
     }

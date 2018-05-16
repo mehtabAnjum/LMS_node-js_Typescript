@@ -10,6 +10,7 @@ const student_1 = __importDefault(require("./route/student"));
 const course_1 = __importDefault(require("./route/course"));
 const subject_1 = __importDefault(require("./route/subject"));
 const teacher_1 = __importDefault(require("./route/teacher"));
+const config_1 = require("./db/config");
 const app = express_1.default();
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({
@@ -29,6 +30,10 @@ app.use('/courses', course_1.default);
 app.use('/students', student_1.default);
 app.use('/subjects', subject_1.default);
 app.use('/teachers', teacher_1.default);
-app.listen(1234, () => {
-    console.log("Server started @ 1234");
+// app.listen(1234, () => {
+//     console.log("Server started @ 1234");
+// })
+app.listen(process.env.PORT || 5555, () => {
+    config_1.db.sync();
+    console.log("started");
 });

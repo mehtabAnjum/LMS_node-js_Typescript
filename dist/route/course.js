@@ -7,6 +7,7 @@ const express_1 = __importDefault(require("express"));
 const courseDao_1 = require("../dao/courseDao");
 let route = express_1.default.Router();
 route.get('/', (req, res) => {
+    console.log("mehtab");
     courseDao_1.CourseService.getCourses().then((courses) => {
         res.status(200).send(courses);
     });
@@ -57,5 +58,28 @@ route.get('/:id/batches/:bid/teachers', (req, res) => {
     courseDao_1.CourseService.getBatchTeachers(cid, bid).then((teachers) => {
         res.status(200).send(teachers);
     });
+});
+route.delete('/:id', (req, res) => {
+    let id = req.params.id;
+    console.log(id);
+    try {
+        courseDao_1.CourseService.deleteCourse(id).then((result) => {
+            if (result === 0)
+                throw Error('No course found for id ' + id);
+            res.status(200).json({
+                success: true,
+                id: result
+            });
+        }).catch(err => {
+            res.status(400).json({
+                error: "could not delete course with id: " + id,
+            });
+        });
+    }
+    catch (err) {
+        res.status(400).json({
+            error: "could not delete course with id: " + id
+        });
+    }
 });
 exports.default = route;

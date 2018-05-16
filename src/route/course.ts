@@ -1,11 +1,13 @@
 import express, {Request, Response} from 'express'
 import {CourseService} from "../dao/courseDao";
 import {BatchInterface, CourseInterface} from "../model/interfaces/interface";
+import {SubjectService} from "../dao/subjectDao";
 
 let route: express.Router = express.Router();
 
 route.get('/', (req, res) => {
 
+    console.log("mehtab");
     CourseService.getCourses().then((courses: CourseInterface[] | null) => {
         res.status(200).send(courses);
     })
@@ -68,5 +70,27 @@ route.get('/:id/batches/:bid/teachers', (req: Request, res: Response) => {
         res.status(200).send(teachers);
     })
 });
+
+route.delete('/:id', (req: Request, res: Response) => {
+    let id = req.params.id;
+    console.log(id);
+    try {
+        CourseService.deleteCourse(id).then((result: number | null) => {
+            if (result === 0) throw Error('No course found for id ' + id);
+            res.status(200).json({
+                success: true,
+                id: result
+            });
+        }).catch(err => {
+            res.status(400).json({
+                error:"could not delete course with id: " +id,
+            });
+        })
+    } catch (err) {
+        res.status(400).json({
+            error:"could not delete course with id: " +id
+        });
+    }
+})
 
 export default route
