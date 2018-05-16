@@ -1,6 +1,6 @@
 import express, {Request, Response} from 'express';
 import {TeacherService} from "../dao/teacherDao";
-import {CourseInterface, TeacherInterface} from "../model/interfaces/interface";
+import { TeacherInterface} from "../model/interfaces/interface";
 
 let route: express.Router = express.Router();
 
@@ -12,7 +12,7 @@ route.get('/', (req: Request, res: Response) => {
 
 route.post('/:sid', (req: Request, res: Response) => {
     let sId = req.params.sid;
-    let newTeacher: CourseInterface = {
+    let newTeacher: TeacherInterface = {
         id: 0,
         name: req.body.name
     }

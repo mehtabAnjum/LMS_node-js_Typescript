@@ -1,13 +1,11 @@
 import express, {Request, Response} from 'express'
 import {CourseService} from "../dao/courseDao";
 import {BatchInterface, CourseInterface} from "../model/interfaces/interface";
-import {SubjectService} from "../dao/subjectDao";
 
 let route: express.Router = express.Router();
 
 route.get('/', (req, res) => {
 
-    console.log("mehtab");
     CourseService.getCourses().then((courses: CourseInterface[] | null) => {
         res.status(200).send(courses);
     })

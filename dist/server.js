@@ -11,7 +11,9 @@ const course_1 = __importDefault(require("./route/course"));
 const subject_1 = __importDefault(require("./route/subject"));
 const teacher_1 = __importDefault(require("./route/teacher"));
 const config_1 = require("./db/config");
+const cors = require('cors');
 const app = express_1.default();
+app.use(cors());
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({
     extended: true

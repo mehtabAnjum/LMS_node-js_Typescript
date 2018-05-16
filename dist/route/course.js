@@ -7,7 +7,6 @@ const express_1 = __importDefault(require("express"));
 const courseDao_1 = require("../dao/courseDao");
 let route = express_1.default.Router();
 route.get('/', (req, res) => {
-    console.log("mehtab");
     courseDao_1.CourseService.getCourses().then((courses) => {
         res.status(200).send(courses);
     });
